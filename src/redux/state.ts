@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type MessagesType = {
     id: number
     message: string
@@ -48,4 +50,14 @@ export type RootStateType = {
     }
 }
 
+
+export const addPost = (postText: string) => {
+    const newPost: PostsType = {
+        id: new Date().getTime(),
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state)
+}
 export default state;
